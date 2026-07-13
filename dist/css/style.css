@@ -1,0 +1,188 @@
+/* ============================================
+   Custom Styles — Procurement Dashboard
+   Vibrant, Modern, Premium Fiori Overrides
+   ============================================ */
+
+/* Global body styling to give a dynamic, subtle gradient background */
+.sapUiBody, .sapMApp, .sapMPage, .sapMPageBgStandard {
+    background: linear-gradient(120deg, #F0F4F8 0%, #E2EBF5 100%) !important;
+}
+
+/* Apply modern typography only to text elements, avoiding icon fonts */
+.sapUiBody .sapMText, 
+.sapUiBody .sapMTitle, 
+.sapUiBody .sapMLabel,
+.sapUiBody .sapMBtnContent,
+.sapUiBody .sapMObjStatusText,
+.sapUiBody .sapMObjLStatusText,
+.sapUiBody .sapMTextMaxLine {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Base Panel Styling (Cards) - Glassmorphism & Shadows */
+.sapMPanel {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    margin-bottom: 1.5rem !important;
+    height: auto !important;
+}
+
+.sapMPanel:hover {
+    box-shadow: 0 14px 40px rgba(31, 38, 135, 0.1) !important;
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Panel Header styling */
+.sapMPanel > .sapMPanelHdr,
+.sapMPanel > .sapMIBar {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,0.04) !important;
+    padding: 0.75rem 1.25rem !important;
+}
+
+/* Welcome bar - Vibrant Gradient */
+.welcomeBar {
+    background: linear-gradient(135deg, #0A58CA 0%, #009FE3 100%) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(10, 88, 202, 0.25) !important;
+    padding: 1.25rem 1.5rem !important; /* Added padding since it's an HBox now */
+}
+
+/* Override text colors inside welcome bar */
+.welcomeBar .sapMTitle, 
+.welcomeBar .sapMLabel, 
+.welcomeBar .sapMText {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.welcomeBar .sapMTitle {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+/* Avatar styling */
+.sapFAvatar {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid white;
+}
+
+/* Dashboard two-column layout */
+.leftColumn {
+    flex: 2;
+    min-width: 0;
+    margin-right: 1.5rem;
+}
+
+.rightColumn {
+    flex: 1;
+    min-width: 320px;
+}
+
+/* AI Assistant card body */
+.assistantCardBody {
+    min-height: 240px;
+    padding: 2rem 1.5rem;
+    background: radial-gradient(circle at center, rgba(10, 88, 202, 0.03) 0%, transparent 70%);
+}
+
+.assistantDesc {
+    max-width: 340px;
+    color: #4A5568 !important;
+    line-height: 1.6;
+}
+
+/* Pulse animation on assistant icon */
+.pulseIcon {
+    animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    filter: drop-shadow(0 4px 12px rgba(0, 112, 242, 0.4));
+}
+
+@keyframes pulse {
+    0%   { transform: scale(1);     opacity: 1;   }
+    50%  { transform: scale(1.15);  opacity: 0.8; }
+    100% { transform: scale(1);     opacity: 1;   }
+}
+
+/* Product list styling */
+.productEmoji {
+    font-size: 2.2rem;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+    transition: transform 0.2s ease;
+}
+
+.productListItem:hover .productEmoji {
+    transform: scale(1.1);
+}
+
+.productReason {
+    font-size: 0.85rem;
+    color: #718096 !important;
+}
+
+.productListItem {
+    transition: background 200ms ease, padding-left 200ms ease;
+    border-bottom: 1px solid rgba(0,0,0,0.03) !important;
+}
+
+.productListItem:hover {
+    background: rgba(10, 88, 202, 0.03) !important;
+    padding-left: 0.5rem; /* micro interaction */
+}
+
+/* Generic Tile Overrides (Insights) */
+.sapMGT {
+    background: white !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+    transition: all 0.25s ease !important;
+}
+
+.sapMGT:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Table overrides for cleaner look */
+.sapMListTbl {
+    border: none !important;
+    background: transparent !important;
+}
+
+.sapMListTblRow {
+    transition: all 0.2s ease;
+}
+.sapMListTblRow:hover {
+    background-color: rgba(10, 88, 202, 0.03) !important;
+    transform: scale(1.002);
+}
+
+/* Emphasized Button Micro-animation */
+.sapMBtnEmphasized {
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(10, 88, 202, 0.2) !important;
+}
+.sapMBtnEmphasized:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10, 88, 202, 0.3) !important;
+}
+
+/* Responsive: stack columns on smaller screens */
+@media (max-width: 1024px) {
+    .leftColumn {
+        flex: 1 1 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .rightColumn {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+}

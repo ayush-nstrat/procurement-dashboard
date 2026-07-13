@@ -1,0 +1,237 @@
+<mvc:View
+    controllerName="nstrat.procurement.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+
+    <!-- Dashboard Page to handle scrolling -->
+    <Page id="dashboardPage" showHeader="true" enableScrolling="true" class="sapUiContentPadding">
+        
+    <customHeader>
+    <Toolbar>
+        <Title text="Procurement Hub"/>
+    </Toolbar>
+</customHeader>
+
+        <!-- Welcome Bar -->
+        <HBox id="welcomePanel" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd welcomeBar" alignItems="Center" justifyContent="SpaceBetween">
+            <VBox>
+                <Title id="greetingTitle" text="{view>/greeting}" level="H3" class="sapUiSmallMarginBottom"/>
+                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                    <Label text="{i18n>employeeDepartment}:" class="sapUiTinyMarginEnd"/>
+                    <Text text="{/employee/department}" class="sapUiTinyMarginEnd"/>
+                    <Label text="  |  {i18n>employeeDesignation}:" class="sapUiTinyMarginEnd"/>
+                    <Text text="{/employee/designation}" class="sapUiTinyMarginEnd"/>
+                    <Label text="  |  {i18n>employeeCostCenter}:" class="sapUiTinyMarginEnd"/>
+                    <Text text="{/employee/costCenter}"/>
+                </HBox>
+            </VBox>
+        </HBox>
+
+    <!-- Dashboard Grid -->
+    <HBox id="dashboardGrid" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" wrap="Wrap">
+
+        <!-- ===== LEFT COLUMN ===== -->
+        <VBox id="leftColumn" class="leftColumn">
+
+            <!-- Card 1: AI Procurement Assistant -->
+            <Panel id="cardAIAssistant" class="sapUiSmallMarginBottom">
+                <headerToolbar>
+                    <Toolbar>
+                        <core:Icon src="sap-icon://da" class="sapUiTinyMarginEnd"/>
+                        <Title text="{i18n>cardAIAssistantTitle}" level="H4"/>
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin assistantCardBody">
+                        <core:Icon src="sap-icon://da-2" size="3rem" color="#0070f2" class="sapUiSmallMarginBottom pulseIcon"/>
+                        <Title text="{i18n>assistantHeading}" level="H4" class="sapUiSmallMarginBottom"/>
+                        <Text text="{i18n>assistantDescription}" textAlign="Center" class="sapUiSmallMarginBottom assistantDesc"/>
+                        <Button
+                            id="btnOpenAssistant"
+                            text="{i18n>btnOpenAssistant}"
+                            icon="sap-icon://action"
+                            type="Emphasized"
+                            press=".onOpenAssistant"
+                            class="sapUiSmallMarginTop"/>
+                    </VBox>
+                </content>
+            </Panel>
+
+            <!-- Card 2: Recommended Products -->
+            <Panel id="cardRecommended" class="sapUiSmallMarginBottom">
+                <headerToolbar>
+                    <Toolbar>
+                        <core:Icon src="sap-icon://favorite" class="sapUiTinyMarginEnd"/>
+                        <Title text="{i18n>cardRecommendedTitle}" level="H4"/>
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <List id="productList"
+                          items="{/recommendedProducts}"
+                          mode="None"
+                          showSeparators="Inner">
+                        <CustomListItem type="Active" press=".onProductPress" class="productListItem">
+                            <HBox alignItems="Center" class="sapUiSmallMargin">
+                                <VBox class="sapUiSmallMarginEnd" width="2.5rem" alignItems="Center">
+                                    <Text text="{emoji}" class="productEmoji"/>
+                                </VBox>
+                                <VBox class="sapUiSmallMarginEnd" width="100%">
+                                    <HBox alignItems="Center">
+                                        <Title text="{name}" level="H6"/>
+                                        <ObjectStatus
+                                            text="★ Recommended"
+                                            state="Success"
+                                            class="sapUiTinyMarginBegin"
+                                            visible="{recommended}"/>
+                                    </HBox>
+                                    <Label text="{category}" design="Standard"/>
+                                    <Text text="{reason}" class="sapUiTinyMarginTop productReason"/>
+                                </VBox>
+                            </HBox>
+                        </CustomListItem>
+                    </List>
+                </content>
+            </Panel>
+
+            <!-- Card 3: My Requests -->
+            <Panel id="cardMyRequests" class="sapUiSmallMarginBottom">
+                <headerToolbar>
+                    <Toolbar>
+                        <core:Icon src="sap-icon://request" class="sapUiTinyMarginEnd"/>
+                        <Title text="{i18n>cardRequestsTitle}" level="H4"/>
+                        <ToolbarSpacer/>
+                        <Button
+                            id="btnNewRequest"
+                            text="{i18n>btnNewRequest}"
+                            type="Emphasized"
+                            icon="sap-icon://add"
+                            press=".onOpenAssistant"/>
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <Table id="requestsTable"
+                           items="{/myRequests}"
+                           growing="true"
+                           growingThreshold="5"
+                           fixedLayout="false"
+                           alternateRowColors="true">
+                        <columns>
+                            <Column><Text text="{i18n>colRequestId}"/></Column>
+                            <Column><Text text="{i18n>colProduct}"/></Column>
+                            <Column><Text text="{i18n>colStatus}"/></Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colReviewer}"/></Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colPriority}"/></Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colDate}"/></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{id}"/>
+                                    <Text text="{product}"/>
+                                    <ObjectStatus text="{status}" state="{path: 'statusType', formatter: '.formatStatusState'}"/>
+                                    <Text text="{reviewer}"/>
+                                    <ObjectStatus text="{priority}" state="{path: 'priority', formatter: '.formatPriorityState'}"/>
+                                    <Text text="{date}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Panel>
+
+        </VBox>
+
+        <!-- ===== RIGHT COLUMN ===== -->
+        <VBox id="rightColumn" class="rightColumn">
+
+            <!-- Card 4: Suggested Accessories -->
+            <Panel id="cardAccessories" class="sapUiSmallMarginBottom">
+                <headerToolbar>
+                    <Toolbar>
+                        <core:Icon src="sap-icon://chain-link" class="sapUiTinyMarginEnd"/>
+                        <Title text="{i18n>cardAccessoriesTitle}" level="H4"/>
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <Text text="Based on selected product:" class="sapUiTinyMarginBottom"/>
+                        <ObjectStatus text="Dell Latitude 7450" state="Information" class="sapUiSmallMarginBottom"/>
+                    </VBox>
+                    <List id="accessoryList"
+                          items="{/suggestedAccessories}"
+                          mode="None"
+                          showSeparators="Inner">
+                        <StandardListItem
+                            title="{name}"
+                            description="{meta}"
+                            icon="sap-icon://add"
+                            type="Active"
+                            press=".onAccessoryPress"
+                            iconInset="false"/>
+                    </List>
+                </content>
+            </Panel>
+
+            <!-- Card 5: Procurement Insights (KPIs) -->
+            <Panel id="cardInsights" class="sapUiSmallMarginBottom">
+                <headerToolbar>
+                    <Toolbar>
+                        <core:Icon src="sap-icon://business-objects-experience" class="sapUiTinyMarginEnd"/>
+                        <Title text="{i18n>cardInsightsTitle}" level="H4"/>
+                    </Toolbar>
+                </headerToolbar>
+                <content>
+                    <HBox class="sapUiSmallMargin" wrap="Wrap" justifyContent="SpaceBetween">
+                        <GenericTile
+                            header="Pending Requests"
+                            subheader="+1 this week"
+                            press=".onKPIPress"
+                            class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                            frameType="OneByOne">
+                            <TileContent>
+                                <NumericContent value="3" icon="sap-icon://pending" valueColor="Critical"/>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            header="Approved Requests"
+                            subheader="+2 this month"
+                            press=".onKPIPress"
+                            class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                            frameType="OneByOne">
+                            <TileContent>
+                                <NumericContent value="12" icon="sap-icon://accept" valueColor="Good"/>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            header="Avg Approval Time"
+                            subheader="↓ 0.3d faster"
+                            press=".onKPIPress"
+                            class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                            frameType="OneByOne">
+                            <TileContent>
+                                <NumericContent value="2.4" scale="days" icon="sap-icon://time-entry-request" valueColor="Good"/>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            header="Budget Utilization"
+                            subheader="₹4.2L of ₹6.3L"
+                            press=".onKPIPress"
+                            class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                            frameType="OneByOne">
+                            <TileContent>
+                                <NumericContent value="67" scale="%" icon="sap-icon://lead" valueColor="Neutral"/>
+                            </TileContent>
+                        </GenericTile>
+                    </HBox>
+                </content>
+            </Panel>
+
+        </VBox>
+
+    </HBox>
+
+    </Page>
+</mvc:View>

@@ -1,0 +1,13 @@
+{
+  "name": "employee-dashboard",
+  "version": "1.0.0",
+  "description": "AI-Powered Employee Procurement Dashboard using SAPUI5",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o index.html",
+    "build": "ui5 build"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.0.0"
+  }
+}

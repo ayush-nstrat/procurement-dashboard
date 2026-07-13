@@ -1,0 +1,11 @@
+<mvc:View
+    controllerName="nstrat.procurement.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    
+    <App id="appContainer">
+        <!-- Dashboard view is injected here by the Router -->
+    </App>
+
+</mvc:View>

@@ -1,0 +1,76 @@
+{
+  "employee": {
+    "name": "Ayush Kumar",
+    "initials": "AK",
+    "id": "EMP1024",
+    "department": "Engineering",
+    "designation": "Software Engineer",
+    "costCenter": "ENG-001"
+  },
+  "recommendedProducts": [
+    {
+      "id": "prod-1",
+      "name": "Dell Latitude 7450",
+      "category": "Laptop",
+      "recommended": true,
+      "reason": "Chosen by 82% of Engineering employees",
+      "emoji": "💻"
+    },
+    {
+      "id": "prod-2",
+      "name": "ThinkPad T14",
+      "category": "Laptop",
+      "recommended": false,
+      "reason": "Popular among cross-functional teams",
+      "emoji": "💻"
+    },
+    {
+      "id": "prod-3",
+      "name": "Dell Dock WD22",
+      "category": "Accessory",
+      "recommended": false,
+      "reason": "Top-rated docking solution for Dell laptops",
+      "emoji": "🔌"
+    },
+    {
+      "id": "prod-4",
+      "name": "Wireless Mouse",
+      "category": "Peripheral",
+      "recommended": false,
+      "reason": "Ergonomic pick by 68% of employees",
+      "emoji": "🖱️"
+    }
+  ],
+  "myRequests": [
+    {
+      "id": "REQ-1001",
+      "product": "Dell Latitude 7450",
+      "status": "Manager Review",
+      "statusType": "review",
+      "reviewer": "John Smith",
+      "priority": "High",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "REQ-1002",
+      "product": "Docking Station",
+      "status": "Approved",
+      "statusType": "approved",
+      "reviewer": "Sarah Lee",
+      "priority": "Medium",
+      "date": "2026-07-01"
+    }
+  ],
+  "suggestedAccessories": [
+    { "name": "Wireless Mouse", "meta": "Logitech MX Master 3S", "icon": "🖱️" },
+    { "name": "Docking Station", "meta": "Dell WD22TB4 Thunderbolt", "icon": "🔌" },
+    { "name": "Laptop Bag", "meta": "Dell Pro Slim 15\"", "icon": "💼" },
+    { "name": "External Monitor", "meta": "Dell UltraSharp U2723QE", "icon": "🖥️" }
+  ],
+  "kpis": [
+    { "label": "Pending Requests", "value": "3", "trend": "+1 this week", "trendDir": "up", "type": "pending" },
+    { "label": "Approved Requests", "value": "12", "trend": "+2 this month", "trendDir": "up", "type": "approved" },
+    { "label": "Avg Approval Time", "value": "2.4d", "trend": "↓ 0.3d faster", "trendDir": "down", "type": "time" },
+    { "label": "Budget Utilization", "value": "67%", "trend": "₹4.2L of ₹6.3L", "trendDir": "neutral", "type": "budget", "budgetPercent": 67 }
+  ]
+}

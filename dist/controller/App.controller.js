@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(t){"use strict";return t.extend("nstrat.procurement.controller.App",{onInit:function(){this.getView().addStyleClass("sapUiSizeCompact")}})});
+//# sourceMappingURL=App.controller.js.map
