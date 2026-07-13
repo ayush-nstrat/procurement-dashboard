@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/json/JSONModel"],function(t,e){"use strict";return t.extend("nstrat.procurement.Component",{metadata:{manifest:"json"},init:function(){t.prototype.init.apply(this,arguments);var n=new e(sap.ui.require.toUrl("nstrat/procurement/localService/mockdata/data.json"));this.setModel(n);this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map
